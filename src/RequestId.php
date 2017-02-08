@@ -3,7 +3,7 @@
 namespace Softonic\Laravel\Middleware;
 
 use Illuminate\Http\Request;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class RequestId.

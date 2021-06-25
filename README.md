@@ -54,4 +54,4 @@ Route::get('route', function() {})->middleware('request-id');
 ### Extra
 
 If you need to have the X-Request-Id ASAP, you can modify `\App\Providers\AppServiceProvider::boot` adding `$_SERVER['HTTP_X_REQUEST_ID'] ??= \Ramsey\Uuid\Uuid::uuid4()->toString();`.
-This is going to allow you to use the X-Request-ID in the framework booting to for example customize monolog.
+This is going to allow you to use the X-Request-ID in the framework booting to for example customize monolog or in console executions.

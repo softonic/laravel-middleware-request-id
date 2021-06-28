@@ -46,6 +46,11 @@ class RequestIdTest extends TestCase
             $request->header('X-Request-ID'),
             'The same X-Request-ID must be set in request and response.'
         );
+        $this->assertEquals(
+            $response->headers->get('X-Request-ID'),
+            $_SERVER['HTTP_X_REQUEST_ID'],
+            'The same X-Request-ID must be set in server globals.'
+        );
     }
 
     public function testPropagateRequestIdToResponseIfProvidedInRequest()
@@ -71,6 +76,11 @@ class RequestIdTest extends TestCase
             '09226165-364a-461a-bf5c-e859d70d907e',
             $response->headers->get('X-Request-ID'),
             'The request X-Request-ID header must be set in the response.'
+        );
+        $this->assertEquals(
+            '09226165-364a-461a-bf5c-e859d70d907e',
+            $_SERVER['HTTP_X_REQUEST_ID'],
+            'The same X-Request-ID must be set in server globals.'
         );
     }
 }

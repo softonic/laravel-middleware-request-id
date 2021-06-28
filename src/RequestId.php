@@ -26,6 +26,8 @@ class RequestId
         $uuid = $request->headers->get('X-Request-ID');
         if (is_null($uuid)) {
             $uuid = Uuid::uuid4()->toString();
+
+            $_SERVER['HTTP_X_REQUEST_ID'] = $uuid;
             $request->headers->set('X-Request-ID', $uuid);
         }
 

@@ -2,7 +2,9 @@
 
 namespace Softonic\Laravel\Middleware;
 
+use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -15,13 +17,13 @@ class RequestId
     /**
      * Add the Request ID header if needed.
      *
-     * @param Request  $request Request to be checked.
-     * @param \Closure $next
-     * @param null     $guard
+     * @param Request $request Request to be checked.
+     * @param Closure $next
+     * @param null $guard
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function handle(Request $request, \Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next, $guard = null): Response
     {
         $uuid = $request->headers->get('X-Request-ID');
 

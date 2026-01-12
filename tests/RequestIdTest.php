@@ -4,6 +4,7 @@ namespace Softonic\Laravel\Middleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,7 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 class RequestIdTest extends TestCase
 {
-    public function testRequestIdIsAnObject()
+    #[Test]
+    public function requestIdIsAnObject(): void
     {
         $request_id = new RequestId();
         $this->assertThat(
@@ -23,7 +25,8 @@ class RequestIdTest extends TestCase
         );
     }
 
-    public function testRequestIdShouldBeFilledIfDoesNotExistInRequestAndResponse()
+    #[Test]
+    public function requestIdShouldBeFilledIfDoesNotExistInRequestAndResponse(): void
     {
         $request  = new Request();
         $response = new Response();
@@ -53,7 +56,8 @@ class RequestIdTest extends TestCase
         );
     }
 
-    public function testPropagateRequestIdToResponseIfProvidedInRequest()
+    #[Test]
+    public function propagateRequestIdToResponseIfProvidedInRequest(): void
     {
         $request = new Request();
         $request->headers->set('X-Request-ID', '09226165-364a-461a-bf5c-e859d70d907e');

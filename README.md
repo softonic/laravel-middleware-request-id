@@ -1,5 +1,10 @@
 # softonic/laravel-middleware-request-id
-[![Build Status](https://travis-ci.org/softonic/laravel-middleware-request-id.svg?branch=master)](https://travis-ci.org/softonic/laravel-middleware-request-id)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/softonic/laravel-middleware-request-id/tests.yml?branch=master&style=flat-square)](https://github.com/softonic/laravel-middleware-request-id/actions)
+
+## Requirements
+
+- PHP >= 8.5
+- Laravel 12.x
 
 ## Install
 
@@ -55,3 +60,35 @@ Route::get('route', function() {})->middleware('request-id');
 
 If you need to have the X-Request-Id ASAP, you can modify `\App\Providers\AppServiceProvider::boot` adding `$_SERVER['HTTP_X_REQUEST_ID'] ??= \Ramsey\Uuid\Uuid::uuid4()->toString();`.
 This is going to allow you to use the X-Request-ID in the framework booting to for example customize monolog or in console executions.
+
+## Testing
+
+To run the tests:
+
+```bash
+docker compose run --rm test
+```
+
+To run PHPUnit only:
+
+```bash
+docker compose run --rm phpunit
+```
+
+To check code style:
+
+```bash
+docker compose run --rm php composer run phpcs
+```
+
+To fix code style issues:
+
+```bash
+docker compose run --rm fixcs
+```
+
+To run static analysis:
+
+```bash
+docker compose run --rm php composer run phpstan
+```

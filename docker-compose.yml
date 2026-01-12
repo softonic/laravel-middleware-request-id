@@ -1,0 +1,35 @@
+services:
+  php:
+    build: .
+    volumes:
+    - ./:/app
+
+  install:
+    build: .
+    volumes:
+    - ./:/app
+    command: sh -c "git config --global --add safe.directory /app && composer install"
+
+  phpunit:
+    build: .
+    volumes:
+    - ./:/app
+    command: sh -c "git config --global --add safe.directory /app && composer run phpunit"
+
+  test:
+    build: .
+    volumes:
+    - ./:/app
+    command: sh -c "git config --global --add safe.directory /app && composer run tests"
+
+  fixcs:
+    build: .
+    volumes:
+    - ./:/app
+    command: sh -c "git config --global --add safe.directory /app && composer run fix-cs"
+
+  debug:
+    build: .
+    volumes:
+    - ./:/app
+    command: sh -c "mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini 2>/dev/null || true; php -dxdebug.mode=debug -dpcov.enabled=0 $@"

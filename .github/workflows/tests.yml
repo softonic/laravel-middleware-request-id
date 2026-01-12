@@ -34,9 +34,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: |
-          composer require "illuminate/http:^12.0" --no-interaction --no-update
-          composer update --prefer-dist --no-interaction --no-progress
+        run: composer update --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
         run: composer run phpunit

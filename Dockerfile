@@ -1,4 +1,4 @@
-FROM composer:latest
+FROM composer:2
 
 # Install build dependencies
 RUN apk add --no-cache $PHPIZE_DEPS linux-headers
